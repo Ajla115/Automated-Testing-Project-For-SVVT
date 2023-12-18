@@ -1,0 +1,21 @@
+{
+    "url": {
+        "home_page": "https://eu.puma.com/de/en/home"
+    },
+
+    "data":{
+        "email": "testemail3@gmail.com",
+        "login_email" : "pproba415@gmail.com"
+       
+    },
+
+    "credentials": {
+        "password": "P@ssw0.rd",
+        "login_password" : "P@ssw0r.d"
+    },
+
+    "verification_message": {
+        "registration_message": "WELCOME TO THE PUMA FAM",
+        "login_message": "My Account"
+    }
+}
