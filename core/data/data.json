@@ -5,7 +5,8 @@
 
     "data":{
         "email": "testemail3@gmail.com",
-        "login_email" : "pproba415@gmail.com"
+        "login_email" : "pproba415@gmail.com",
+        "search_item" : "Pink female running shoes"
        
     },
 
@@ -16,6 +17,8 @@
 
     "verification_message": {
         "registration_message": "WELCOME TO THE PUMA FAM",
-        "login_message": "My Account"
+        "login_message": "My Account",
+        "favorites": "Favourites",
+        "return_policy" : "Returns"
     }
 }
