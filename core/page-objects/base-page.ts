@@ -43,5 +43,6 @@ export default class BasePage {
     async fillInputField(inputField: By, text: string) {
         await (await this.findElement(inputField)).sendKeys(text);
     }
+
 }
 

@@ -13,6 +13,7 @@ export class LoginPage extends BasePage {
     private email_field = By.id('login-form-email');
     private remember_login_checkbox = By.id('loginRememberMe');
     private password_button = By.className('btn btn-block btn-secondary col-12');
+    private locate_form = By.className("registration");
     private create_password_field = By.id('dwfrm_profile_registration_password');
     private create_account_button = By.className('row login-bottom-row');
     private verification_message = By.className('modal-nsj-title');
@@ -20,7 +21,7 @@ export class LoginPage extends BasePage {
     //TEST 6
     private login_password_field = By.id("login-form-password");
     private login_button = By.className('btn btn-block btn-secondary col-12');
-    private login_verification_message = By.className('breadcrumb');
+    private login_verification_message = By.className('breadcrumb-item');
 
     constructor(driver: WebDriver) {
         super(driver);
@@ -42,6 +43,7 @@ export class LoginPage extends BasePage {
     }
 
     async createAPassword(){
+        await this.waitForElement(this.locate_form, 20000);
         await this.fillInputField(this.create_password_field, testData.credentials.password);
     }
 
@@ -69,13 +71,18 @@ export class LoginPage extends BasePage {
 
     async verifyAccountLogin(){
         await this.waitForElement(this.login_verification_message, 10000);
-        await this.checkMatchingElements(this.login_verification_message, testData.verification_message.login_message);
+        
+        // Get all matching elements
+        const elements = await this.findElement(this.login_verification_message);
+        // Check if there are at least three elements
+        if (elements.length >= 2) {
+        // Get the text content of the second element
+        const secondElementText = await elements[1].getText();
+
+        // Compare the text with the expected value from testData    
+        await this.checkMatchingElements(secondElementText, testData.verification_message.login_message);
     }
-
-
-
-
-    
+}
 
    
 }

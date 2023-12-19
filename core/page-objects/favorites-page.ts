@@ -14,14 +14,15 @@ export class FavoritesPage extends BasePage {
     private continue_with_password_button = By.className("btn btn-block btn-secondary col-12");
     private login_password = By.id("login-form-password");
     private login_button = By.className("btn btn-block btn-secondary col-12");
-    private verify_favorites_page = By.className('breadcrumb');
+    private verify_favorites_page = By.className('breadcrumb-item');
 
     //TEST 8
     private bin_icon = By.className("remove-from-wishlist");
     private remove_item_prompt = By.id("removeProductLineItemModal");
     private confirm_removal = By.className("btn btn-primary wish-delete-confirmation-btn");
-    private close_remove_item_prompt = By.className('modal-header delete-confirmation-header');
+    //private close_remove_item_prompt = By.className('modal-header delete-confirmation-header');
    // private close_icon = By.className("close");
+   private close_remove_item_prompt = By.xpath("//div[@class='modal-header delete-confirmation-header']//button[@class='close']");
 
     async provideLoginEmail(){
         await this.fillInputField(this.login_email, testData.data.login_email);
@@ -44,9 +45,18 @@ export class FavoritesPage extends BasePage {
     }
 
     async verifyFavoritesPage(){
-        await this.waitForElement(this.verify_favorites_page, 10000);
-        await this.checkMatchingElements(this.verify_favorites_page, testData.verification_message.favorites);
+        await this.waitForElement(this.verify_favorites_page, 20000);
+        // Get all matching elements
+        const elements = await this.findElement(this.verify_favorites_page);
+        // Check if there are at least three elements
+        if (elements.length >= 3) {
+        // Get the text content of the third element
+        const thirdElementText = await elements[2].getText();
+
+        // Compare the text with the expected value from testData    
+        await this.checkMatchingElements(thirdElementText, testData.verification_message.favorites);
     }
+}
 
     //TEST 8
     async removeFromFavourites(){

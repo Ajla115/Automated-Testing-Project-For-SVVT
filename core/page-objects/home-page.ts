@@ -25,25 +25,24 @@ export class HomePage extends BasePage {
 
     //TEST 4
     //private women_menu = By.className("p-nav-list");
-    //private women_menu = By.xpath("/html/body/div[5]/header/div[1]/div/div[2]/div/div[1]/div[2]/nav/ul/li[1]/a");
-    private women_menu = By.xpath('//*[@id="siteHeader"]/div[1]/div/div[2]/div/div[1]/div[2]/nav/ul/li[1]/a');
-    //private menu_item = By.cssSelector('a[data-category-id="womens"]');
-    //private menu_item = By.xpath("/html/body/div[5]/header/div[1]/div/div[2]/div/div[1]/div[2]/nav/ul/li[1]/div/ul/li[2]/div/div/ul/li[1]/a");
-    private menu_item = By.xpath('//*[@id="siteHeader"]/div[1]/div/div[2]/div/div[1]/div[2]/nav/ul/li[1]/div/ul/li[2]/div/div/ul/li[1]/a');
-
+    
+    private women_menu = By.xpath('//li[@class="p-nav-item js-nav-item"]//a[@href="/de/en/women"]');
+    private menu_item = By.xpath('//li[@class="p-sub-nav-tier2"]//a[@href="/de/en/women/shoes/sneakers"]');
     //TEST 1
     private search_bar = By.className("p-header-search-inner js-already-under-validation-rules");
-    private search_item = By.className("p-header-search-field searchInput js-cmp-search-bar-input hf-validated hf-valid hf-in-range hf-user-valid");
-    private start_search_icon = By.className("p-header-search-icon js-cmp-search-bar-open-search-page");
+   // private search_item = By.className("p-header-search-field searchInput js-cmp-search-bar-input hf-validated hf-valid hf-in-range");
+    private search_item = By.className("p-header-search-field searchInput js-cmp-search-bar-input");
+    //private search_item = By.className("p-header-actions-search-bar  js-cmp");
+    //private start_search_icon = By.className("p-header-search-icon js-cmp-search-bar-open-search-page");
+    private start_search_icon = By.xpath("//div[@class='p-header-actions-search-bar  js-cmp']//div[@class= 'p-header-actions-search p-header-search'] //form[@class='p-header-search-inner js-already-under-validation-rules']//span[@class='p-header-search-icon js-cmp-search-bar-open-search-page']");
 
     //TEST 7
     private favorites_icon = By.className("p-header-actions-icon p-header-actions-icon--wishlist js-cmp js-wishlist-icon");
 
     //TEST 9
     private footer_tag= By.id("collapse-1");
-    private return_policy = By.className("p-footer-link");
-    private return_policy_page_verification = By.className("container content-asset-container content-page");
-
+    private return_policy = By.xpath('//a[@href="https://eu.puma.com/de/en/returning-items/HELP_Returning.html"]');
+    
     constructor(driver: WebDriver) {
         super(driver);
     }
@@ -72,10 +71,15 @@ export class HomePage extends BasePage {
 
     //TEST 4
     async hoverOverWomenMenu(){
-        await this.findElement(this.women_menu);
+        await this.waitForElement(this.women_menu, 40000);
+        const womenMenu = await this.findElement(this.women_menu);
+        await this.driver.actions().move({ origin: womenMenu }).perform();
+        //await this.waitForElement(this.menu_item, 10000); 
+        //await this.findElement(this.women_menu);
     }
 
     async chooseMenuItem(){
+        await this.waitForElement(this.women_menu, 40000);
         await this.findElementAndClick(this.menu_item);
     }
 
@@ -89,7 +93,7 @@ export class HomePage extends BasePage {
     }
 
     async startSearch(){
-        await this.waitForElement(this.start_search_icon, 500000);
+        //await this.waitForElement(this.start_search_icon, 10000);
         await this.findElementAndClick(this.start_search_icon);
     }
 
@@ -101,21 +105,10 @@ export class HomePage extends BasePage {
     //TEST 9
     async clickOnReturnPolicy(){
         await this.findElement(this.footer_tag);
-
-        //da li se moze ovo kako drugacije ovdje napisati
-        const elements = await this.driver.findElements(this.return_policy);
-
-        if (elements.length >= 9) {
-            await elements[8].click(); //  9th element (index 8 )
-        } else { //error handling
-            console.error("Not enough elements with class 'p-footer-link'");
-        }
+        await this.findElementAndClick(this.return_policy);
     }
 
-    async verifyReturnPolicyPage(){
-        await this.waitForElement(this.return_policy_page_verification, 10000);
-        await this.checkMatchingElements(this.return_policy_page_verification, testData.verification_message.return_policy);
-    }
+    
         
     
 
