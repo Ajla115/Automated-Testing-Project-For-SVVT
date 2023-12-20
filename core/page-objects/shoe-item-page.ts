@@ -15,9 +15,16 @@ export class ShoeItemPage extends BasePage {
     //private add_to_cart_button = By.className("add-to-cart btn btn-primary btn-full-width");
     //private add_to_cart_button = By.xpath("//button[@class='add-to-cart btn btn-primary btn-full-width']");
     private add_to_cart_button = By.xpath('//div[@class="add-to-cart-btn-block col-10 col-sm-8"]//button[@class="add-to-cart btn btn-primary btn-full-width"]');
-    private added_to_cart_prompt = By.xpath("//div[@id='exampleModal']//div[@class='modal-dialog']//div[@class='modal-content']");
-    private added_item_verification_message = By.className("bag-overlay-quantity-added");
+    //private added_to_cart_prompt = By.xpath("//div[@id='exampleModal']//div[@class='modal-dialog']//div[@class='modal-content']");
+    private added_to_cart_prompt = By.xpath("//div[@id='addToBagOverlay']//div[@class='modal-dialog']//div[@class='modal-content']//div[@class='modal-body']");
+    //private added_item_verification_message = By.className("bag-overlay-quantity-added");
+    //private added_item_verification_message = By.xpath("//div[@class='bag-overlay addToBagOverlay']//h2[@class='bag-overlay-quantity-added']");
+    private added_item_verification_message = By.xpath("//h2[@class='bag-overlay-quantity-added']");
     
+    //TEST 3
+    private view_cart_button = By.xpath('//a[@href="https://eu.puma.com/de/en/cart"]');
+
+
     constructor(driver: WebDriver) {
         super(driver);
     }
@@ -38,10 +45,23 @@ export class ShoeItemPage extends BasePage {
         await this.driver.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    async verifyAddedToCart(){
+    async openAddToCartPrompt(){
+        await this.driver.sleep(1000);
+        //await this.waitForElement(this.added_to_cart_prompt, 50000);
         await this.findElement(this.added_to_cart_prompt);
-        await this.waitForElement(this.added_item_verification_message, 20000);
+        //await this.waitForElement(this.added_item_verification_message, 20000);
+        //await this.checkMatchingElements(this.added_item_verification_message, testData.verification_message.added_to_cart);
+    }
+
+    async verifyAddedToCart(){
+        await this.driver.sleep(1000);
+        await this.waitForElement(this.added_item_verification_message, 10000);
         await this.checkMatchingElements(this.added_item_verification_message, testData.verification_message.added_to_cart);
+    }
+
+    async clickToViewCart(){
+        await this.driver.sleep(1000);
+        await this.findElementAndClick(this.view_cart_button);
     }
 
 

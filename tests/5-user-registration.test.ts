@@ -5,7 +5,7 @@ import { readFileSync } from "fs";
 import * as path from "path";
 import { LoginPage } from "../core/page-objects/login-page";
 
-
+/*HIGHLY IMPORTANT -> Prije nego sto runnam svaki register, treba promijeniti email u data.json, samo staviti neki drugi broj*/
 
 const dataFilePath = path.resolve(__dirname, "../core/data/data.json");
 const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
@@ -34,7 +34,7 @@ test("user registration", async () => {
     await loginPage.verifyAccountCreation();
 },500000);
 
-afterAll(async () => {
+/*afterAll(async () => {
     await quitDriver(driver);
 },30000);
-
+*/

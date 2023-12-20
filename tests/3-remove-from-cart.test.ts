@@ -3,8 +3,8 @@ import { Builder, By, WebDriver } from "selenium-webdriver";
 import { createDriver, quitDriver } from "../core/config/driver-setup";
 import { readFileSync } from "fs";
 import * as path from "path";
-import { LoginPage } from "../core/page-objects/login-page";
 import { ShoeItemPage } from "../core/page-objects/shoe-item-page";
+import { ViewCartPage } from "../core/page-objects/view-cart-page";
 
 const dataFilePath = path.resolve(__dirname, "../core/data/data.json");
 const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
@@ -12,21 +12,26 @@ const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
 let driver: WebDriver;
 let homePage: HomePage;
 let shoeitemPage: ShoeItemPage;
+let viewcartPage: ViewCartPage;
 
 beforeAll(async () => {
     driver = await createDriver(testData.url.home_page);
     homePage = new HomePage(driver);
     shoeitemPage = new ShoeItemPage (driver);
+    viewcartPage = new ViewCartPage(driver);
 },500000);
 
-test("add items to cart", async () => {
+test("add and remove items from cart", async () => {
     await homePage.acceptAllCookies();
     await homePage.clickOnXButton();
     await homePage.clickOnAShoeItem();
     await shoeitemPage.clickOnASize();
     await shoeitemPage.clickOnAddToCart();
-    //await shoeitemPage.openAddToCartPrompt();  //--> ovaj korak ne treba i zbog njega pada
-    await shoeitemPage.verifyAddedToCart(); 
+    await shoeitemPage.clickToViewCart();
+    await viewcartPage.clickToDeleteItemFromCart();
+    await viewcartPage.confirmRemoval();
+    await viewcartPage.confirmSuccessfulRemoval(); 
+    //ovdje mogu potvrditi da je cart empty jer nisam signed in, tako da ce uvijek biti samo ovaj jedan proizvod sto dodam
     
 },500000);
 

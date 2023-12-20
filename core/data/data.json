@@ -4,7 +4,7 @@
     },
 
     "data":{
-        "email": "testemail4@gmail.com",
+        "email": "testemail6@gmail.com",
         "login_email" : "pproba415@gmail.com",
         "search_item" : "Pink female running shoes"
        
@@ -21,6 +21,7 @@
         "favorites": "Favourites",
         "return_policy" : "Returns",
         "added_to_cart" : "1 item(s) added to your cart!",
-        "search_complete" : "Pink female running shoes"
+        "search_complete" : "Pink female running shoes",
+        "successful_filtering" : "Price: 30 € - 70 €"
     }
 }

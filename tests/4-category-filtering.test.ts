@@ -24,11 +24,16 @@ test("category filtering", async () => {
     await homePage.clickOnXButton();
     await homePage.hoverOverWomenMenu();
     await homePage.chooseMenuItem();
-    await sneakersPage.locateAndSelectPrice();
+    await sneakersPage.clickOnPriceButton();
+    await sneakersPage.chooseOnePriceOption();
+    await sneakersPage.clickToClosePriceFilter();
+    await sneakersPage.clickToSeeAllOptions();
+    //await sneakersPage.checkPricesInRange();
+    await sneakersPage.verifyFiltration();
 
 },1000000);
 
-/*afterAll(async () => {
+afterAll(async () => {
     await quitDriver(driver);
-},30000);*/
+},30000);
 

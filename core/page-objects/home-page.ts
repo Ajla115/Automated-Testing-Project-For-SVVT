@@ -79,7 +79,8 @@ export class HomePage extends BasePage {
     }
 
     async chooseMenuItem(){
-        await this.waitForElement(this.women_menu, 40000);
+        await this.driver.sleep(1000)
+        //await this.waitForElement(this.women_menu, 40000);
         await this.findElementAndClick(this.menu_item);
     }
 
