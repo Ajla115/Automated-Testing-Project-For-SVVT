@@ -27,13 +27,17 @@ test("category filtering", async () => {
     await sneakersPage.clickOnPriceButton();
     await sneakersPage.chooseOnePriceOption();
     await sneakersPage.clickToClosePriceFilter();
-    await sneakersPage.clickToSeeAllOptions();
+    //await sneakersPage.clickToSeeAllOptions();
     //await sneakersPage.checkPricesInRange();
     await sneakersPage.verifyFiltration();
+    await sneakersPage.openSizeFilter();
+    await sneakersPage.chooseOneSize();
+    await sneakersPage.clickToCloseSizeFilter();
+    await sneakersPage.confirmSizeFiltration();
 
 },1000000);
 
-afterAll(async () => {
+/*afterAll(async () => {
     await quitDriver(driver);
-},30000);
+},30000);*/
 
