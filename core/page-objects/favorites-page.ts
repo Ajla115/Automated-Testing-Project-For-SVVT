@@ -16,6 +16,8 @@ export class FavoritesPage extends BasePage {
     private login_button = By.className("btn btn-block btn-secondary col-12");
     private verify_favorites_page = By.className('breadcrumb-item');
 
+    public item_saved_in_favorites = By.xpath("//div[@class='line-item-header']");
+
     //TEST 8
     private bin_icon = By.className("remove-from-wishlist");
     private remove_item_prompt = By.id("removeProductLineItemModal");
@@ -23,6 +25,7 @@ export class FavoritesPage extends BasePage {
     //private close_remove_item_prompt = By.className('modal-header delete-confirmation-header');
    // private close_icon = By.className("close");
    private close_remove_item_prompt = By.xpath("//div[@class='modal-header delete-confirmation-header']//button[@class='close']");
+   private empty_favorites_list = By.xpath("//h1[@class='wishlist-empty-message']");
 
     async provideLoginEmail(){
         await this.fillInputField(this.login_email, testData.data.login_email);
@@ -52,11 +55,10 @@ export class FavoritesPage extends BasePage {
         if (elements.length >= 3) {
         // Get the text content of the third element
         const thirdElementText = await elements[2].getText();
-
         // Compare the text with the expected value from testData    
         await this.checkMatchingElements(thirdElementText, testData.verification_message.favorites);
+        }
     }
-}
 
     //TEST 8
     async removeFromFavourites(){
@@ -72,10 +74,15 @@ export class FavoritesPage extends BasePage {
     }
 
     async closeRemoveItemPrompt(){
+        await this.driver.sleep(1000);
         await this.findElementAndClick(this.close_remove_item_prompt);
         //await this.findElementAndClick(this.close_icon);
     }
-    
 
-   
+    //TEST 8
+    async verifyEmptyFavoritesList(){
+        await this.driver.sleep(1000);
+        await this.checkMatchingElements(this.empty_favorites_list, testData.verification_message.empty_favorites_list);
+    }
+    
 }

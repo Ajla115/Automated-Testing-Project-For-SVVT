@@ -6,7 +6,8 @@
     "data":{
         "email": "testemail6@gmail.com",
         "login_email" : "pproba415@gmail.com",
-        "search_item" : "Pink female running shoes"
+        "search_item" : "Pink female running shoes",
+        "search_item2" : "ESS+ Women's Hoodie"
        
     },
 
@@ -22,6 +23,11 @@
         "return_policy" : "Returns",
         "added_to_cart" : "1 item(s) added to your cart!",
         "search_complete" : "Pink female running shoes",
-        "successful_filtering" : "Price: 30 € - 70 €"
+        "successful_filtering" : "Price: 30 € - 70 €",
+        "successful_size_filtering" : "Size: 35.5",
+        "successful_colour_filtering" : "Colour: Beige",
+        "added_to_favorites" : "Added to Favourites",
+        "empty_favorites_list" : "Your Favourites list is Empty"
+
     }
 }

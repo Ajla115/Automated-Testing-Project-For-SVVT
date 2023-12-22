@@ -20,12 +20,22 @@ export class SneakersPage extends BasePage {
     private discounted_price = By.className("product-tile-price-new product-tile__price--new");
     private all_products = By.xpath("//div[@class='product-grid-container']");
     private confirm_filtration = By.xpath("//span[@class='filter-bar-value']");
+    private click_on_size_filter = By.xpath("//div[@class='refinement refinement--size_facet']//button[@class='btn refinement-title ']");
+    private choose_size = By.xpath("//div[@class='refinement refinement--size_facet is-open']//div[@class='refinement-show']//ul[@class='refinement-list list-unstyled']//li[@class='refinement-item refinement-item--text boolean ']//button[@class='refinement-button refinement-button--text btn ']//div[@class='custom-controls-stacked']//label[@class='custom-control mode-checkbox']//input[@id='refinementItemText']");
+    private close_size_prompt = By.xpath("//div[@class='refinement refinement--size_facet is-open']//div[@class='refinement-show']//button[@class='btn refinement-icon-close hidden-md-down']");
+    private confirm_size_filtration = By.xpath("//span[@class='filter-bar-value']");
+    private open_colour_button = By.xpath("//div[@class='refinement refinement--refinement_color']//button[@class='btn refinement-title ']");
+    private choose_colour = By.xpath("//div[@class='refinement refinement--refinement_color is-open']//div[@class='refinement-show']//ul[@class='refinement-list list-unstyled']//li[@class='refinement-item refinement-item--text boolean ']//button[@class='refinement-button refinement-button--text btn ']//div[@class='custom-controls-stacked']//label[@class='custom-control mode-checkbox']//input[@id='refinementItemText']");
+    private close_colour_prompt = By.xpath("//div[@class='refinement refinement--refinement_color is-open']//div[@class='refinement-show']//button[@class='btn refinement-icon-close hidden-md-down']");
+    private colour_filtration = By.xpath("//span[@class='filter-bar-value']");
+
+
 
     constructor(driver: WebDriver) {
         super(driver);
     }
 
-        async clickOnPriceButton(){
+    async clickOnPriceButton(){
         await this.driver.sleep(1000);
         //await this.findElement(this.locate_filters_menu);
         await this.findElementAndClick(this.click_on_price_field);
@@ -52,7 +62,6 @@ export class SneakersPage extends BasePage {
 
     async clickToSeeAllOptions(){
         await this.findElementAndClick(this.show_all_items);
-        console.log("23");
 
     }
 
@@ -77,23 +86,85 @@ export class SneakersPage extends BasePage {
     
         
         for (const product of productElements) {
-            // Extract all price elements within the product
-            const priceElements = await product.findElements(By.className('product-tile-price')); // Use the correct class name
+            const priceElements = await product.findElements(By.className("product-tile-price-standard product-tile__price--standard")); 
     
-            // Extract prices and check if any fall within the specified range
             for (const priceElement of priceElements) {
-                const priceText = await priceElement.getAttribute('textContent'); // Use textContent instead of innerText
+                const priceText = await priceElement.getAttribute('textContent'); //ili mozda trebainnerText, ne razumijem razliku
                 const price = parseFloat(priceText.replace('€', '').replace(',', '.'));
     
-                // Check if the price is within the specified range
+                
                 if (minPrice <= price && price <= maxPrice) {
                     console.log(`Product with price ${price} is within the range.`);
-                    // You might want to break the loop if you only need one valid price per product
+                   
                     // break;
                 }
             }
         }
-    }*/
+    }
+*/
+    async openSizeFilter(){
+        await this.findElementAndClick(this.click_on_size_filter);
+    }
+
+    async chooseOneSize(){
+        await this.driver.sleep(1000);
+        
+       /* const elements = await this.driver.findElements(this.choose_size);
+        if (elements.length >= 20) {
+            await this.driver.sleep(1000);
+            const fifthSize = elements[4];
+            
+            await this.findElementAndClick(fifthSize);  
+        }*/
+
+        await this.findElementAndClick(this.choose_size);
+
+    }
+
+    async clickToCloseSizeFilter(){
+        await this.driver.sleep(1000);
+        await this.findElementAndClick(this.close_size_prompt);
+    }
+
+    async confirmSizeFiltration(){
+        await this.driver.sleep(1000);
+        //await this.waitForElement(this.confirm_size_filtration, 20000);
+       
+        const elements = await this.findElement(this.confirm_size_filtration);
+        
+        if (elements.length >= 2) {
+        const secondElementText = await elements[1].getText();   
+        await this.checkMatchingElements(secondElementText, testData.verification_message.successful_size_filtering);
+
+        }
+    }
+
+    async clickToOpenColourPrompt(){
+        await this.findElementAndClick(this.open_colour_button);
+    }
+
+    async chooseColour(){
+        await this.driver.sleep(1000);
+        await this.findElementAndClick(this.choose_colour);
+    }
+
+    async closeColourPrompt(){
+        await this.driver.sleep(1000);
+        await this.findElementAndClick(this.close_colour_prompt);
+    }
+
+    async confirmColourFiltration(){
+        await this.driver.sleep(1000);
+        //await this.waitForElement(this.confirm_size_filtration, 20000);
+       
+        const elements = await this.findElement(this.colour_filtration);
+        
+        if (elements.length >= 3) {
+        const thirdElementText = await elements[2].getText();   
+        await this.checkMatchingElements(thirdElementText, testData.verification_message.successful_colour_filtering);
+
+    }
+}
     
     
     
@@ -107,5 +178,6 @@ export class SneakersPage extends BasePage {
 
 
    
+
 
 

@@ -11,7 +11,7 @@ export class ShoeItemPage extends BasePage {
     //TEST 2
     //private shoes_size = By.id('attributes-container-size');
     //private shoes_size = By.xpath("//ul[@class='product-variation-swatches product-variation--size']//li[@class='product-variation-swatch selected text']//a[@href='https://eu.puma.com/de/en/pd/palermo-special/397549.html?dwvar_397549_size=0230&dwvar_397549_color=01']");
-    private shoes_size = By.xpath("//a[@href='https://eu.puma.com/de/en/pd/palermo-special/397549.html?dwvar_397549_size=0230&dwvar_397549_color=01']");
+    private shoes_size = By.xpath("//a[@href='https://eu.puma.com/de/en/pd/fenty-x-puma-creeper-phatty-unisex-sneakers/396403.html?dwvar_396403_size=0180&dwvar_396403_color=01']");
     //private add_to_cart_button = By.className("add-to-cart btn btn-primary btn-full-width");
     //private add_to_cart_button = By.xpath("//button[@class='add-to-cart btn btn-primary btn-full-width']");
     private add_to_cart_button = By.xpath('//div[@class="add-to-cart-btn-block col-10 col-sm-8"]//button[@class="add-to-cart btn btn-primary btn-full-width"]');
@@ -21,8 +21,14 @@ export class ShoeItemPage extends BasePage {
     //private added_item_verification_message = By.xpath("//div[@class='bag-overlay addToBagOverlay']//h2[@class='bag-overlay-quantity-added']");
     private added_item_verification_message = By.xpath("//h2[@class='bag-overlay-quantity-added']");
     
+
     //TEST 3
     private view_cart_button = By.xpath('//a[@href="https://eu.puma.com/de/en/cart"]');
+
+    //TEST 7
+    private add_to_favorites_button = By.xpath("//button[@class='btn btn-add-to-wish-list-pdp add-to-wish-list']");
+    private open_added_to_favorites_prompt = By.xpath("//div[@class='wishlist-overlay']");
+    private added_to_favorites = By.xpath("//h2[@class='wishlist-overlay-item-added ']");
 
 
     constructor(driver: WebDriver) {
@@ -65,10 +71,28 @@ export class ShoeItemPage extends BasePage {
     }
 
 
+    //TEST 7
+
+    async addToFavorites(){
+        await this.driver.sleep(1000);
+        await this.scrollIntoView(this.add_to_favorites_button);
+        await this.findElementAndClick(this.add_to_favorites_button);
+
+    }
+
+    async verifyIfAddedToFavorites(){
+        await this.driver.sleep(1000);
+        await this.waitForElement(this.open_added_to_favorites_prompt, 20000);  
+        await this.checkMatchingElements(this.added_to_favorites, testData.verification_message.added_to_favorites);
+    }
+    
+}
+
+
    
 
 
 
     
 
-}
+

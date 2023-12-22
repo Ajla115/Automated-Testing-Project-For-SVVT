@@ -34,10 +34,13 @@ test("category filtering", async () => {
     await sneakersPage.chooseOneSize();
     await sneakersPage.clickToCloseSizeFilter();
     await sneakersPage.confirmSizeFiltration();
-
+    await sneakersPage.clickToOpenColourPrompt();
+    await sneakersPage.chooseColour();
+    await sneakersPage.closeColourPrompt();
+    await sneakersPage.confirmColourFiltration();
 },1000000);
 
-/*afterAll(async () => {
+afterAll(async () => {
     await quitDriver(driver);
-},30000);*/
+},30000);
 

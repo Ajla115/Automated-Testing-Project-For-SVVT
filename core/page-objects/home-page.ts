@@ -93,6 +93,11 @@ export class HomePage extends BasePage {
         await this.fillInputField(this.search_item, testData.data.search_item);
     }
 
+    //TEST 8
+    async enterItem2ToSearchFor(){
+        await this.fillInputField(this.search_item, testData.data.search_item2);
+    }
+
     async startSearch(){
         //await this.waitForElement(this.start_search_icon, 10000);
         await this.findElementAndClick(this.start_search_icon);
