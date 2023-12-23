@@ -21,8 +21,9 @@ export class CheckoutPage extends BasePage {
     private choose_DHL = By.xpath('//input[@id="shippingMethod-DHL-EUR-1"]');
     private enter_email = By.xpath('//input[@id="shippingEmail"]');
     private go_to_payments = By.xpath('//button[@class="checkout-button btn btn-primary btn-block submit-shipping"]');
-    private choose_credit_card = By.xpath('//fieldset[@class="payment-options col-12 "]//div[@class="row payment-option-wrapper js-payment-options"]//label[@class="custom-control custom-radio"]//div[@class="col-6 col-lg-4"]//input[@id="paymentOption-PAYMENTOPERATOR_CREDIT_PAYNOW"]');
+    //private choose_credit_card = By.xpath('//fieldset[@class="payment-options col-12 "]//div[@class="row payment-option-wrapper js-payment-options"]//label[@class="custom-control custom-radio"]//div[@class="col-6 col-lg-4"]//input[@id="paymentOption-PAYMENTOPERATOR_CREDIT_PAYNOW"]');
     //private choose_credit_card = By.xpath('//div[@class="col-6 col-lg-4"]//input[@id="paymentOption-PAYMENTOPERATOR_CREDIT_PAYNOW"]');
+    private choose_credit_card = By.xpath('//span[@class="credit-card-logo mastercard"]');
 
     private name_on_card = By.xpath('//input[@id="dwfrm_billing_paymentMethods_creditdirect_owner"]');
     private card_number = By.xpath('//input[@id="dwfrm_billing_paymentMethods_creditdirect_number"]')
@@ -31,6 +32,7 @@ export class CheckoutPage extends BasePage {
     private card_payment_box = By.xpath('//fieldset[@class="payment-options col-12 "]');
     private payments_title = By.xpath('//h4[@class="card-header-title"]');
     private select_payment_method = By.xpath('//button[@class="checkout-button btn btn-primary btn-block submit-payment js-submit-payment"]');
+    
 
 
     constructor(driver: WebDriver) {
@@ -100,8 +102,8 @@ export class CheckoutPage extends BasePage {
         await this.scrollIntoView(this.payment_box);
         //await this.driver.sleep(1000);
         await this.findElement(this.payment_box);
-        await this.findElementAndClick(this.payments_title);
-        await this.findElementAndClick(this.select_payment_method);
+        //await this.findElementAndClick(this.payments_title);
+        //await this.findElementAndClick(this.select_payment_method);
         await this.waitForElement(this.choose_credit_card, 20000);
         await this.findElementAndClick(this.choose_credit_card);
         //await this.driver.sleep(1000);
