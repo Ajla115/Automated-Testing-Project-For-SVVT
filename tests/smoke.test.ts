@@ -1,13 +1,19 @@
 import { HomePage } from "../core/page-objects/home-page";
 import { Builder, By, WebDriver } from "selenium-webdriver";
 import * as chrome from "selenium-webdriver/chrome";
-import { createDriver, quitDriver } from "../core/config/driver-setup";
+import { createDriver2, quitDriver } from "../core/config/driver-setup";
 import { readFileSync } from "fs";
 import * as path from "path";
 import { SneakersPage } from "../core/page-objects/sneakers-page";
 import { ShoeItemPage } from "../core/page-objects/shoe-item-page";
 import { ViewCartPage } from "../core/page-objects/view-cart-page";
 import { CheckoutPage } from "../core/page-objects/checkout-page";
+
+const webdriver = require('selenium-webdriver')
+const chrome = require('selenium-webdriver/chrome')
+const chromeOptions = new chrome.Options()
+
+
 
 const dataFilePath = path.resolve(__dirname, "../core/data/data.json");
 const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
@@ -20,7 +26,8 @@ let viewcartPage: ViewCartPage;
 let checkoutPage : CheckoutPage;
 
 beforeAll(async () => {
-    driver = await createDriver(testData.url.home_page);
+    driver = await createDriver2(testData.url.home_page);
+    
     homePage = new HomePage(driver);
     sneakersPage = new SneakersPage(driver);
     shoeitemPage = new ShoeItemPage(driver);
@@ -50,12 +57,12 @@ test("smoke test", async () => {
     await checkoutPage.enterCity();
     await checkoutPage.chooseCountry();
     await checkoutPage.stayOnGermanOnlineStore();
-    await checkoutPage.chooseDHLOption();
+    //await checkoutPage.chooseDHLOption();
     await checkoutPage.enterEmail();
     await checkoutPage.goToPaymentSection(); //--> ovdje mi se pojavi google pop up
     await checkoutPage.chooseCreditCard(); 
     await checkoutPage.enterNameOfCreditCard();
-    
+
 
 },5000000);
 

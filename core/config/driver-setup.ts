@@ -15,7 +15,28 @@ export async function createDriver(url : string) {
 }
 
 
+export async function createDriver2(url: string) {
+    const prefs = {
+        'autofill.profile_enabled': false,
+    };
 
+    const options = new chrome.Options();
+    options.setUserPreferences(prefs);
+    options.addArguments("--disable-single-click-autofill");
+
+    const driver = await new Builder()
+        .forBrowser("chrome")
+        .setChromeOptions(options)
+        .build();
+
+    await driver.get(url);
+    await driver.manage().window().maximize();
+    await driver.manage().setTimeouts({ implicit: 15000 });
+
+    // This is an implicit wait, waiting for 15 seconds to find an element.
+    // If it doesn't find it, the test will fail.
+    return driver;
+}
 
 
 export async function quitDriver(driver: WebDriver) {
