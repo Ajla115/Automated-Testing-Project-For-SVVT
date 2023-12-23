@@ -15,7 +15,9 @@ export class CheckoutPage extends BasePage {
     private house_number = By.xpath("//input[@id ='shippingSuite']");
     private zip_code = By.xpath('//input[@id="shippingZipCode"]');
     private city = By.xpath('//input[@id="shippingAddressCity"]');
-    private open_country_prompt = By.xpath('//div[@class="form-group required dwfrm_shipping_shippingAddress_addressFields_countries_countryCode has-success"]//div[@class="select-mask"]');
+    private open_country_prompt = By.xpath('//select[@id="shippingCountry"]');
+    private choose_country = By.xpath('//option[@data-checkout-url="https://eu.puma.com/hr/en/checkout/start"]');
+    private stay_on_german_online_store = By.xpath('//a[@class="btn btn-secondary notification-btn"]');
 
     constructor(driver: WebDriver) {
         super(driver);
@@ -46,7 +48,20 @@ export class CheckoutPage extends BasePage {
     }
 
     async chooseCountry(){
+        //await this.driver.sleep(1000);
+        await this.scrollIntoView(this.open_country_prompt);
         await this.findElementAndClick(this.open_country_prompt);
+        await this.findElementAndClick(this.choose_country);
+    }
+
+    private async scrollIntoView(selector: By) {
+        const element = await this.driver.findElement(selector);
+        await this.driver.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    async stayOnGermanOnlineStore(){
+        await this.driver.sleep(1000);
+        await this.findElementAndClick(this.stay_on_german_online_store);
     }
 
 

@@ -47,6 +47,7 @@ test("smoke test", async () => {
     await checkoutPage.enterZipCode();
     await checkoutPage.enterCity();
     await checkoutPage.chooseCountry();
+    await checkoutPage.stayOnGermanOnlineStore();
 
 },5000000);
 
