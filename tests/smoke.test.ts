@@ -1,5 +1,6 @@
 import { HomePage } from "../core/page-objects/home-page";
 import { Builder, By, WebDriver } from "selenium-webdriver";
+import * as chrome from "selenium-webdriver/chrome";
 import { createDriver, quitDriver } from "../core/config/driver-setup";
 import { readFileSync } from "fs";
 import * as path from "path";
@@ -22,10 +23,11 @@ beforeAll(async () => {
     driver = await createDriver(testData.url.home_page);
     homePage = new HomePage(driver);
     sneakersPage = new SneakersPage(driver);
-    shoeitemPage = new ShoeItemPage (driver);
+    shoeitemPage = new ShoeItemPage(driver);
     viewcartPage = new ViewCartPage(driver);
     checkoutPage = new CheckoutPage(driver);
-},50000);
+}, 50000);
+
 
 test("smoke test", async () => {
     await homePage.acceptAllCookies();
@@ -48,6 +50,12 @@ test("smoke test", async () => {
     await checkoutPage.enterCity();
     await checkoutPage.chooseCountry();
     await checkoutPage.stayOnGermanOnlineStore();
+    await checkoutPage.chooseDHLOption();
+    await checkoutPage.enterEmail();
+    await checkoutPage.goToPaymentSection(); //--> ovdje mi se pojavi google pop up
+    await checkoutPage.chooseCreditCard(); 
+    await checkoutPage.enterNameOfCreditCard();
+    
 
 },5000000);
 

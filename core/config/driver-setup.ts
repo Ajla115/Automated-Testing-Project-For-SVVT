@@ -1,6 +1,7 @@
 import { Builder, WebDriver } from "selenium-webdriver";
 import * as chrome from "selenium-webdriver/chrome";
 
+
 let driver;
 
 export async function createDriver(url : string) {
@@ -12,6 +13,10 @@ export async function createDriver(url : string) {
     //ovo je implicit wait, ceka 15 secondi da nade element, ako ga ne nade onda test pada
     return driver;
 }
+
+
+
+
 
 export async function quitDriver(driver: WebDriver) {
     await driver.quit();

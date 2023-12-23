@@ -14,12 +14,15 @@
     "credentials": {
         "password": "P@ssw0.rd",
         "login_password" : "P@ssw0r.d",
-        "shipping_first_name" : "Alayna",
+        "shipping_first_name" : "Alanya",
         "shipping_lastname" : "Walker",
-        "shipping_address" : "Am Kupfergraben",
+        "shipping_address" : "Am Krupfgraben",
         "house_number" : "2",
         "zip_code" : "10115",
-        "city" : "Berlin"
+        "city" : "Berlin",
+        "name_on_card" : "Alanya Walker",
+        "card_number" : "4005519200000004",
+        "security_code" : "123"
     },
 
     "verification_message": {
