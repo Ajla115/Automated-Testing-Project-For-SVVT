@@ -13,7 +13,13 @@
 
     "credentials": {
         "password": "P@ssw0.rd",
-        "login_password" : "P@ssw0r.d"
+        "login_password" : "P@ssw0r.d",
+        "shipping_first_name" : "Alayna",
+        "shipping_lastname" : "Walker",
+        "shipping_address" : "Am Kupfergraben",
+        "house_number" : "2",
+        "zip_code" : "10115",
+        "city" : "Berlin"
     },
 
     "verification_message": {

@@ -12,6 +12,10 @@ export class PinkShoesPage extends BasePage {
     //private search_confirmation_message = By.xpath("ul[@class='breadcrumb']//li[@class='breadcrumb-item']");
     private search_confirmation_message = By.className("breadcrumb-item");
 
+    constructor(driver: WebDriver) {
+        super(driver);
+    }
+
     async verifySearchPage(){
         await this.waitForElement(this.search_confirmation_message, 20000);
         // Get all matching elements

@@ -53,6 +53,7 @@ export class HomePage extends BasePage {
     }
 
     async clickOnXButton(){
+        //await this.driver.wait(1000);
         await this.findElementAndClick(this.x_button);
     }
 

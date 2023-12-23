@@ -10,6 +10,10 @@ export class HoodiesPage extends BasePage {
 
     private hoodie_item = By.xpath("//a[@href='/de/en/pd/ess%2B-minimal-gold-womens-hoodie/680019.html?dwvar_680019_color=01']");
 
+    constructor(driver: WebDriver) {
+        super(driver);
+    }
+    
     async clickOnHoodieItem(){
         await this.driver.sleep(1000);
         await this.findElementAndClick(this.hoodie_item);

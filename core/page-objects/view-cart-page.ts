@@ -12,6 +12,9 @@ export class ViewCartPage extends BasePage {
     private confirm_removal_button = By.xpath("//button[@class='btn btn-primary cart-delete-confirmation-btn']");
     private confirm_successful_removal = By.xpath("//h1[@class='cart-empty-message text-center']");
 
+    //SMOKE TEST
+    private checkout_button = By.xpath('//a[@class="btn btn-primary js-checkout-btn checkout-btn col-12 "]');
+
     constructor(driver: WebDriver) {
         super(driver);
     }
@@ -28,6 +31,11 @@ export class ViewCartPage extends BasePage {
 
     async confirmSuccessfulRemoval(){
         await this.findElementAndClick(this.confirm_successful_removal);
+    }
+
+    //SMOKE TEST
+    async clickOnCheckoutButton(){
+        await this.findElementAndClick(this.checkout_button);
     }
 
 

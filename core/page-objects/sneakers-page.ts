@@ -9,7 +9,7 @@ const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
 export class SneakersPage extends BasePage {
 
     //variables for TEST4
-    private locate_filters_menu = By.className('refinement-bar');
+    private locate_filters_menu = By.xpath('//div[@class="refinement-bar-container js-refinement-bar-container"]');
     private click_on_price_field = By.xpath("//button[@class='btn refinement-title ']");
     private open_price_field =  By.xpath("//div[@class='refinement refinement--product_price_de is-open']//div[@class='refinement-show']");
     //private choose_price = By.id('refinementItemPrice');
@@ -25,11 +25,13 @@ export class SneakersPage extends BasePage {
     private close_size_prompt = By.xpath("//div[@class='refinement refinement--size_facet is-open']//div[@class='refinement-show']//button[@class='btn refinement-icon-close hidden-md-down']");
     private confirm_size_filtration = By.xpath("//span[@class='filter-bar-value']");
     private open_colour_button = By.xpath("//div[@class='refinement refinement--refinement_color']//button[@class='btn refinement-title ']");
+    private open_colour_button_smoke_test = By.xpath("//button[@class='btn refinement-title ']")
     private choose_colour = By.xpath("//div[@class='refinement refinement--refinement_color is-open']//div[@class='refinement-show']//ul[@class='refinement-list list-unstyled']//li[@class='refinement-item refinement-item--text boolean ']//button[@class='refinement-button refinement-button--text btn ']//div[@class='custom-controls-stacked']//label[@class='custom-control mode-checkbox']//input[@id='refinementItemText']");
     private close_colour_prompt = By.xpath("//div[@class='refinement refinement--refinement_color is-open']//div[@class='refinement-show']//button[@class='btn refinement-icon-close hidden-md-down']");
     private colour_filtration = By.xpath("//span[@class='filter-bar-value']");
 
-
+    //Smoke test
+    private selected_sneakers = By.xpath('//a[@href="/de/en/pd/carina-2.0-sneakers-women/385849.html?dwvar_385849_color=02"]');
 
     constructor(driver: WebDriver) {
         super(driver);
@@ -140,6 +142,7 @@ export class SneakersPage extends BasePage {
     }
 
     async clickToOpenColourPrompt(){
+        //await this.driver.sleep(1000);
         await this.findElementAndClick(this.open_colour_button);
     }
 
@@ -165,10 +168,43 @@ export class SneakersPage extends BasePage {
 
     }
 }
-    
-    
-    
+
+    //Smoke test
+    async locateFilterMenu(){
+        await this.findElement(this.locate_filters_menu);
+    }
+
+    async clickToOpenColourPrompt2(){
+        await this.driver.sleep(1000);
+        //await this.driver.findElement(this.locate_filters_menu);
+        //await this.findElementAndClick(this.open_colour_button_smoke_test);
+        /*console.log("Prije");
+        await this.waitForElement(this.open_colour_button, 20000);
+        console.log("U toku");
+        await this.findElementAndClick(this.open_colour_button);
+        console.log("Poslije");*/
+
+        await this.waitForElement(this.locate_filters_menu, 20000);
+        
+        const elements = await this.findElement(this.open_colour_button_smoke_test);
+        
+        if (elements.length >= 4) {
+        
+        const thirdElementText = await elements[3]
+        await this.findElementAndClick(thirdElementText);
+
+    }
 }
+
+    async chooseOneItem(){
+        await this.findElementAndClick(this.selected_sneakers);
+    }
+}
+
+    
+    
+    
+
 
 
 

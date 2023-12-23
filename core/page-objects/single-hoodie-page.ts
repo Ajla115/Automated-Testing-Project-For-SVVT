@@ -12,6 +12,10 @@ export class SingleHoodiePage extends BasePage {
     private add_to_favorites_button = By.xpath("//button[@class='btn btn-add-to-wish-list-pdp add-to-wish-list']");
     private view_favorites_button = By.xpath("//a[@class='btn btn-mongoose wishlist-overlay-action-btn']");
     
+    constructor(driver: WebDriver) {
+        super(driver);
+    }
+    
     private async scrollIntoView(selector: By) {
         const element = await this.driver.findElement(selector);
         await this.driver.executeScript("arguments[0].scrollIntoView(true);", element);

@@ -27,6 +27,10 @@ export class FavoritesPage extends BasePage {
    private close_remove_item_prompt = By.xpath("//div[@class='modal-header delete-confirmation-header']//button[@class='close']");
    private empty_favorites_list = By.xpath("//h1[@class='wishlist-empty-message']");
 
+   constructor(driver: WebDriver) {
+    super(driver);
+    }
+
     async provideLoginEmail(){
         await this.fillInputField(this.login_email, testData.data.login_email);
     }

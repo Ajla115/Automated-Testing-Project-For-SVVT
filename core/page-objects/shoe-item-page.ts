@@ -30,6 +30,13 @@ export class ShoeItemPage extends BasePage {
     private open_added_to_favorites_prompt = By.xpath("//div[@class='wishlist-overlay']");
     private added_to_favorites = By.xpath("//h2[@class='wishlist-overlay-item-added ']");
 
+    //Smoke test
+    private change_color_of_sneakers = By.id("swatch-16");
+    private choose_shoe_size = By.id("swatch-0210");
+    private sizes_window = By.xpath('//div[@id="attributes-container-size"]');
+    private choose_quantity = By.xpath("//select[@id='qty-select-4065454926487']");
+    private close_added_to_cart_prompt = By.xpath('//div[@class="modal fade addToBagOverlay modal-fs-mobile show"]//div[@class="modal-dialog"]//div[@class="modal-content"]//button[@class="close"]');
+
 
     constructor(driver: WebDriver) {
         super(driver);
@@ -86,6 +93,32 @@ export class ShoeItemPage extends BasePage {
         await this.checkMatchingElements(this.added_to_favorites, testData.verification_message.added_to_favorites);
     }
     
+    //Smoke test
+    async changeColorOfSneakers(){
+        await this.findElementAndClick(this.change_color_of_sneakers);
+        await this.driver.sleep(1000);
+    }
+
+    async clickToChooseShoeSize(){
+
+        await this.scrollIntoView(this.sizes_window);
+        await this.findElementAndClick(this.choose_shoe_size);
+    }
+    
+    async clickToChooseQuantity(){
+        await this.findElementAndClick(this.choose_quantity);
+    }
+
+    async clickOnAddToCart2(){
+        await this.waitAndClick(this.add_to_cart_button, 20000);
+        //await this.findElementAndClick(this.add_to_cart_button);
+    }
+
+    async closeAddedToCartPrompt(){
+        //await this.driver.sleep(1000);
+        await this.waitAndClick(this.close_added_to_cart_prompt, 20000);
+        await this.findElementAndClick(this.close_added_to_cart_prompt);
+    }
 }
 
 
