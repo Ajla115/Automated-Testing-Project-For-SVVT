@@ -9,11 +9,9 @@ import { ShoeItemPage } from "../core/page-objects/shoe-item-page";
 import { ViewCartPage } from "../core/page-objects/view-cart-page";
 import { CheckoutPage } from "../core/page-objects/checkout-page";
 
-const webdriver = require('selenium-webdriver')
+/*const webdriver = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
-const chromeOptions = new chrome.Options()
-
-
+const chromeOptions = new chrome.Options()*/
 
 const dataFilePath = path.resolve(__dirname, "../core/data/data.json");
 const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
