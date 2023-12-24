@@ -23,6 +23,7 @@ beforeAll(async () => {
 },10000);
 
 /*Prethodno obrisati ovaj item iz favorites jer ako nisam onda ga kroz ovo izbrise iz favorites*/
+//Msm da ne bi trebalo ovo iznad biti problem sa ovim emailom
 test("add to favorites", async () => {
     await homePage.acceptAllCookies();
     await homePage.clickOnXButton();

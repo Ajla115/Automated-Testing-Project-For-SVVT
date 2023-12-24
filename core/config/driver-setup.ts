@@ -1,7 +1,7 @@
 import { Builder, WebDriver } from "selenium-webdriver";
 import * as chrome from "selenium-webdriver/chrome";
 
-
+//login_password je sifra za pprobu i sunflower email
 let driver;
 
 export async function createDriver(url : string) {

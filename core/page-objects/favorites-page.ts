@@ -35,6 +35,7 @@ export class FavoritesPage extends BasePage {
         await this.fillInputField(this.login_email, testData.data.login_email);
     }
 
+
     async clickOnRememberLoginCheckbox(){
         await this.findElementAndClick(this.remember_login_box);
     }
@@ -88,5 +89,11 @@ export class FavoritesPage extends BasePage {
         await this.driver.sleep(1000);
         await this.checkMatchingElements(this.empty_favorites_list, testData.verification_message.empty_favorites_list);
     }
+
+   
+    async provideLoginEmail2(){
+        await this.fillInputField(this.login_email, testData.data.login_email2);
+    }
+
     
 }

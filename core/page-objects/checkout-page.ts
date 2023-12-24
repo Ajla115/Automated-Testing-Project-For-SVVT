@@ -32,6 +32,12 @@ export class CheckoutPage extends BasePage {
     private card_payment_box = By.xpath('//fieldset[@class="payment-options col-12 "]');
     private payments_title = By.xpath('//h4[@class="card-header-title"]');
     private select_payment_method = By.xpath('//button[@class="checkout-button btn btn-primary btn-block submit-payment js-submit-payment"]');
+    private choose_expiration_month = By.xpath('//select[@id="dwfrm_billing_paymentMethods_creditdirect_expiration_month"]');
+    private choose_october = By.xpath('/html/body/div[5]/div[4]/div/div[1]/div[5]/div[2]/div[4]/div/form/fieldset[1]/fieldset[2]/div/div[5]/div[1]/div/div[1]/div[1]/select/option[11]');
+    private choose_expiration_year = By.xpath('//select[@id="dwfrm_billing_paymentMethods_creditdirect_expiration_year"]');
+    private choose_2025 = By.xpath('/html/body/div[5]/div[4]/div/div[1]/div[5]/div[2]/div[4]/div/form/fieldset[1]/fieldset[2]/div/div[5]/div[2]/div/div[1]/div[1]/select/option[4]');
+    private buy_now_button = By.xpath('//button[@class="checkout-button btn btn-primary btn-block mb-4 klarna-place-order js-klarna-place-order"]');
+    private verify_order = By.xpath('//h1[@class="p-page-title"]');
     
 
 
@@ -84,7 +90,7 @@ export class CheckoutPage extends BasePage {
     async chooseDHLOption(){
         await this.waitForElement(this.choose_DHL, 10000);
         await this.findElementAndClick(this.choose_DHL);
-        //await this.driver.sleep(1000);
+        await this.driver.sleep(1000);
     }
 
     async enterEmail(){
@@ -104,6 +110,7 @@ export class CheckoutPage extends BasePage {
         await this.findElement(this.payment_box);
         //await this.findElementAndClick(this.payments_title);
         //await this.findElementAndClick(this.select_payment_method);
+        await this.driver.sleep(1000);
         await this.waitForElement(this.choose_credit_card, 20000);
         await this.findElementAndClick(this.choose_credit_card);
         //await this.driver.sleep(1000);
@@ -118,15 +125,47 @@ export class CheckoutPage extends BasePage {
     }
 
     async enterCardNumber(){
+        await this.waitForElement(this.card_number, 50000);
         await this.fillInputField(this.card_number, testData.credentials.card_number);
     }
 
     async enterSecurityCode(){
+        await this.waitForElement(this.security_code, 50000);
         await this.fillInputField(this.security_code, testData.credentials.security_code);
     }
 
+    async chooseExpirationMonth(){
+        await this.findElementAndClick(this.choose_expiration_month);
+        await this.waitForElement(this.choose_october, 20000);
+        await this.findElementAndClick(this.choose_october);
+    }
 
+    async chooseExpirationYear(){
+        await this.findElementAndClick(this.choose_expiration_year);
+        await this.waitForElement(this.choose_2025, 20000);
+        await this.findElementAndClick(this.choose_2025);
+    }
 
+    async clickOnSelectPaymentMethod(){
+        await this.scrollIntoView(this.select_payment_method);
+        await this.findElementAndClick(this.select_payment_method);
+    }
 
+    async clickOnBuyNow(){
+        await this.waitForElement(this.buy_now_button, 20000);
+        await this.findElementAndClick(this.buy_now_button);
+    }
 
+    async verifyOrder(){
+        await this.waitForElement(this.verify_order, 50000);
+        await this.checkMatchingElements(this.verify_order, testData.verification_message.verify_order);
+
+    }
+
+    
 }
+
+
+
+
+

@@ -33,7 +33,7 @@ test("add and remove from favourites", async () => {
     await hoodiesPage.clickOnHoodieItem();
     await singlehoodiePage.chooseHoodieSize();
     await singlehoodiePage.addToFavorites();
-    await favoritesPage.provideLoginEmail();
+    await favoritesPage.provideLoginEmail2();
     await favoritesPage.clickOnRememberLoginCheckbox();
     await favoritesPage.clickOnContinueWithPasswordButton();
     await favoritesPage.provideLoginPassword();

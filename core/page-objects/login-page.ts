@@ -44,7 +44,7 @@ export class LoginPage extends BasePage {
 
     async createAPassword(){
         await this.waitForElement(this.locate_form, 20000);
-        await this.fillInputField(this.create_password_field, testData.credentials.password);
+        await this.fillInputField(this.create_password_field, testData.credentials.login_password);
     }
 
     async clickOnCreateAnAccountButton(){

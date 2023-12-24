@@ -25,7 +25,7 @@ test("add items to cart", async () => {
     await homePage.clickOnAShoeItem();
     await shoeitemPage.clickOnASize();
     await shoeitemPage.clickOnAddToCart();
-    //await shoeitemPage.openAddToCartPrompt();  //--> ovaj korak ne treba i zbog njega pada
+    await shoeitemPage.openAddToCartPrompt();  //--> ovaj korak je upitan, nekad sa njim radi, ali nekad on smeta
     await shoeitemPage.verifyAddedToCart(); 
     
 },500000);

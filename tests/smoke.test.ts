@@ -27,7 +27,6 @@ let checkoutPage : CheckoutPage;
 
 beforeAll(async () => {
     driver = await createDriver2(testData.url.home_page);
-    
     homePage = new HomePage(driver);
     sneakersPage = new SneakersPage(driver);
     shoeitemPage = new ShoeItemPage(driver);
@@ -57,16 +56,21 @@ test("smoke test", async () => {
     await checkoutPage.enterCity();
     await checkoutPage.chooseCountry();
     await checkoutPage.stayOnGermanOnlineStore();
-    //await checkoutPage.chooseDHLOption();
+    await checkoutPage.chooseDHLOption();
     await checkoutPage.enterEmail();
     await checkoutPage.goToPaymentSection(); //--> ovdje mi se pojavi google pop up
     await checkoutPage.chooseCreditCard(); 
     await checkoutPage.enterNameOfCreditCard();
-
-
+    await checkoutPage.enterCardNumber();
+    await checkoutPage.enterSecurityCode();
+    await checkoutPage.chooseExpirationMonth();
+    await checkoutPage.chooseExpirationYear();
+    await checkoutPage.clickOnSelectPaymentMethod();
+    await checkoutPage.clickOnBuyNow();
+    await checkoutPage.verifyOrder();
 },5000000);
 
-/*afterAll(async () => {
+afterAll(async () => {
     await quitDriver(driver);
-},30000);*/
+},30000);
 

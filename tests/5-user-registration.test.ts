@@ -34,7 +34,7 @@ test("user registration", async () => {
     await loginPage.verifyAccountCreation();
 },500000);
 
-/*afterAll(async () => {
+afterAll(async () => {
     await quitDriver(driver);
 },30000);
-*/
+

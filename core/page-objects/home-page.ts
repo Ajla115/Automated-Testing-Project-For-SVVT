@@ -23,6 +23,9 @@ export class HomePage extends BasePage {
     //even though it is used multiple times, this is how it works
     private shoes_size = By.id('attributes-container-size');
 
+    //TEST 3
+    private shoes_item2 = By.xpath('/html/body/div[5]/div[4]/div/div/div/div/div[1]/div/div[2]/a');
+
     //TEST 4
     //private women_menu = By.className("p-nav-list");
     
@@ -41,7 +44,8 @@ export class HomePage extends BasePage {
 
     //TEST 9
     private footer_tag= By.id("collapse-1");
-    private return_policy = By.xpath('//a[@href="https://eu.puma.com/de/en/returning-items/HELP_Returning.html"]');
+    //private return_policy = By.xpath('//a[@href="https://eu.puma.com/de/en/returning-items/HELP_Returning.html"]');
+    private return_policy = By.xpath('/html/body/div[5]/footer/div/div/div[2]/div[1]/div/div[2]/div[2]/a[1]');
     
     constructor(driver: WebDriver) {
         super(driver);
@@ -68,6 +72,11 @@ export class HomePage extends BasePage {
     //TEST 2
     async clickOnAShoeItem(){
         await this.findElementAndClick(this.shoes_item);
+    }
+
+    //Test 3
+    async clickOnAShoeItem2(){
+        await this.findElementAndClick(this.shoes_item2);
     }
 
     //TEST 4
