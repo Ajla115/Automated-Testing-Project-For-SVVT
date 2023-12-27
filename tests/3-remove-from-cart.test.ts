@@ -35,7 +35,7 @@ test("add and remove items from cart", async () => {
     
 },500000);
 
-/*afterAll(async () => {
+afterAll(async () => {
     await quitDriver(driver);
-},30000);*/
+},30000);
 

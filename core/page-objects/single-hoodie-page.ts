@@ -22,13 +22,15 @@ export class SingleHoodiePage extends BasePage {
     }
 
     async chooseHoodieSize(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.scrollIntoView(this.hoodie_size);
         await this.findElementAndClick(this.hoodie_size);
     }
 
     async addToFavorites(){
         await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 10000 }); //ovo ne radi ovdje
         await this.scrollIntoView(this.add_to_favorites_button);
         await this.findElementAndClick(this.add_to_favorites_button);
     }

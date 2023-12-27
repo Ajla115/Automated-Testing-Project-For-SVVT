@@ -17,7 +17,7 @@ beforeAll(async () => {
     homePage = new HomePage(driver);
     sneakersPage = new SneakersPage(driver);
     
-},10000);
+},50000);
 
 test("category filtering", async () => {
     await homePage.acceptAllCookies();

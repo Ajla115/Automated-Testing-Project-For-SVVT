@@ -8,7 +8,7 @@ const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
 
 export class SneakersPage extends BasePage {
 
-    //variables for TEST4
+    //TEST 4
     private locate_filters_menu = By.xpath('//div[@class="refinement-bar-container js-refinement-bar-container"]');
     private click_on_price_field = By.xpath("//button[@class='btn refinement-title ']");
     private open_price_field =  By.xpath("//div[@class='refinement refinement--product_price_de is-open']//div[@class='refinement-show']");
@@ -40,8 +40,10 @@ export class SneakersPage extends BasePage {
         super(driver);
     }
 
+    //TEST 4
     async clickOnPriceButton(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 }); //pvdje ne radi
         //await this.findElement(this.locate_filters_menu);
         await this.findElementAndClick(this.click_on_price_field);
         //await this.waitAndClick(this.open_price_field, 20000);
@@ -49,19 +51,14 @@ export class SneakersPage extends BasePage {
 
     async chooseOnePriceOption(){
         await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.waitForElement(this.open_price_field, 10000);
-    
-        /*const elements = await this.driver.findElement(this.choose_price);
-        if (elements.length >= 4) {
-            const thirdPrice = elements[2];
-            await this.findElementAndClick(thirdPrice);  
-        }*/
-
-       await this.findElementAndClick(this.choose_price);
+        await this.findElementAndClick(this.choose_price);
     }
 
     async clickToClosePriceFilter(){
         await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.close_price_filter);
     }
 
@@ -71,68 +68,33 @@ export class SneakersPage extends BasePage {
     }
 
     async verifyFiltration(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.waitForElement(this.confirm_filtration, 10000);  
         await this.checkMatchingElements(this.confirm_filtration, testData.verification_message.successful_filtering);
     }
 
-    /*async checkPricesInRange() {
-        
-        const productElements = await this.driver.findElements(this.show_all_items);
     
-        if (!Array.isArray(productElements) || productElements.length === 0) {
-            console.error('No product elements found or not iterable.');
-            return;
-        }
-    
-       
-        const minPrice = 30.00;
-        const maxPrice = 70.00;
-    
-        
-        for (const product of productElements) {
-            const priceElements = await product.findElements(By.className("product-tile-price-standard product-tile__price--standard")); 
-    
-            for (const priceElement of priceElements) {
-                const priceText = await priceElement.getAttribute('textContent'); //ili mozda trebainnerText, ne razumijem razliku
-                const price = parseFloat(priceText.replace('€', '').replace(',', '.'));
-    
-                
-                if (minPrice <= price && price <= maxPrice) {
-                    console.log(`Product with price ${price} is within the range.`);
-                   
-                    // break;
-                }
-            }
-        }
-    }
-*/
     async openSizeFilter(){
         await this.findElementAndClick(this.click_on_size_filter);
     }
 
     async chooseOneSize(){
         await this.driver.sleep(1000);
-        
-       /* const elements = await this.driver.findElements(this.choose_size);
-        if (elements.length >= 20) {
-            await this.driver.sleep(1000);
-            const fifthSize = elements[4];
-            
-            await this.findElementAndClick(fifthSize);  
-        }*/
-
+        //await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.choose_size);
 
     }
 
     async clickToCloseSizeFilter(){
         await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.close_size_prompt);
     }
 
     async confirmSizeFiltration(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         //await this.waitForElement(this.confirm_size_filtration, 20000);
        
         const elements = await this.findElement(this.confirm_size_filtration);
@@ -145,12 +107,13 @@ export class SneakersPage extends BasePage {
     }
 
     async clickToOpenColourPrompt(){
-        //await this.driver.sleep(1000);
+       //await this.driver.sleep(1000);
         await this.findElementAndClick(this.open_colour_button);
     }
 
     async chooseColour(){
         await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.choose_colour);
     }
 
@@ -160,8 +123,8 @@ export class SneakersPage extends BasePage {
     }
 
     async confirmColourFiltration(){
-        await this.driver.sleep(1000);
-        //await this.waitForElement(this.confirm_size_filtration, 20000);
+        //await this.driver.sleep(1000);
+        await this.waitForElement(this.confirm_size_filtration, 20000);
        
         const elements = await this.findElement(this.colour_filtration);
         
@@ -172,7 +135,7 @@ export class SneakersPage extends BasePage {
     }
 }
 
-    //Smoke test
+    //SMOKE TEST
     async locateFilterMenu(){
         await this.findElement(this.locate_filters_menu);
     }

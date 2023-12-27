@@ -79,14 +79,15 @@ export class FavoritesPage extends BasePage {
     }
 
     async closeRemoveItemPrompt(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.close_remove_item_prompt);
         //await this.findElementAndClick(this.close_icon);
     }
 
-    //TEST 8
     async verifyEmptyFavoritesList(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.checkMatchingElements(this.empty_favorites_list, testData.verification_message.empty_favorites_list);
     }
 

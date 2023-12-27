@@ -53,25 +53,15 @@ export class ShoeItemPage extends BasePage {
         await this.findElementAndClick(this.shoes_size);
     }
 
-    //TEST 3
-    async  clickOnASize2(){
-        await this.scrollIntoView(this.shoes_size2);
-        await this.findElementAndClick(this.shoes_size2);
-    }
-
     async clickOnAddToCart(){
         await this.scrollIntoView(this.add_to_cart_button);
         //await this.waitAndClick(this.add_to_cart_button, 500000);
         await this.findElementAndClick(this.add_to_cart_button);
     }
 
-    private async scrollIntoView(selector: By) {
-        const element = await this.driver.findElement(selector);
-        await this.driver.executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
     async openAddToCartPrompt(){
-        await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
+        //await this.driver.sleep(1000);
         //await this.waitForElement(this.added_to_cart_prompt, 50000);
         await this.findElement(this.added_to_cart_prompt);
         //await this.waitForElement(this.added_item_verification_message, 20000);
@@ -79,13 +69,29 @@ export class ShoeItemPage extends BasePage {
     }
 
     async verifyAddedToCart(){
-        await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 5000 });
+        await this.driver.sleep(1000); //ovdje mora ici driver, jer ne radi wait
         await this.waitForElement(this.added_item_verification_message, 10000);
         await this.checkMatchingElements(this.added_item_verification_message, testData.verification_message.added_to_cart);
     }
 
+
+    //TEST 3
+    async  clickOnASize2(){
+        await this.scrollIntoView(this.shoes_size2);
+        await this.findElementAndClick(this.shoes_size2);
+    }
+
+
+    private async scrollIntoView(selector: By) {
+        const element = await this.driver.findElement(selector);
+        await this.driver.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    
     async clickToViewCart(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.view_cart_button);
     }
 
@@ -93,7 +99,8 @@ export class ShoeItemPage extends BasePage {
     //TEST 7
 
     async addToFavorites(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 5000 });
         await this.scrollIntoView(this.add_to_favorites_button);
         await this.findElementAndClick(this.add_to_favorites_button);
 
@@ -102,15 +109,16 @@ export class ShoeItemPage extends BasePage {
     async verifyIfAddedToFavorites(){
         //await this.driver.sleep(1000);
         await this.waitForElement(this.open_added_to_favorites_prompt, 20000);
-        await this.driver.sleep(1000);
-        await this.findElement(this.added_to_favorites);  
+        //await this.driver.sleep(1000);
+        await this.waitForElement(this.added_to_favorites, 20000);  
         await this.checkMatchingElements(this.added_to_favorites, testData.verification_message.added_to_favorites);
     }
     
     //Smoke test
     async changeColorOfSneakers(){
         await this.findElementAndClick(this.change_color_of_sneakers);
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
     }
 
     async clickToChooseShoeSize(){
@@ -142,7 +150,8 @@ export class ShoeItemPage extends BasePage {
     }
 
     async verifyOpenedSizeGuide(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 5000 });
         await this.waitForElement(this.shoe_size_guide, 20000);
         await this.checkMatchingElements(this.verify_size_guide, testData.verification_message.verify_size_guide);
     }

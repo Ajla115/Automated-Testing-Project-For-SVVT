@@ -17,6 +17,8 @@ export default class BasePage {
         return await this.driver.findElement(selector);
     }
 
+
+
     async checkTitle(page: { getTitle: () => Promise<string>}, page_title: string){
         let title = await page.getTitle();
         expect(title).toMatch(page_title);
@@ -43,6 +45,10 @@ export default class BasePage {
     async fillInputField(inputField: By, text: string) {
         await (await this.findElement(inputField)).sendKeys(text);
     }
+
+
+
+
 
 }
 

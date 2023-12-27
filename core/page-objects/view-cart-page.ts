@@ -18,9 +18,10 @@ export class ViewCartPage extends BasePage {
     constructor(driver: WebDriver) {
         super(driver);
     }
-
+    //TEST 3
     async clickToDeleteItemFromCart(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.trash_bin_button);
     }
 

@@ -15,7 +15,8 @@ export class HoodiesPage extends BasePage {
     }
     
     async clickOnHoodieItem(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.hoodie_item);
     }
 

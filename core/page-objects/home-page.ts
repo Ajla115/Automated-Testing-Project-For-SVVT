@@ -28,9 +28,9 @@ export class HomePage extends BasePage {
 
     //TEST 4
     //private women_menu = By.className("p-nav-list");
-    
     private women_menu = By.xpath('//li[@class="p-nav-item js-nav-item"]//a[@href="/de/en/women"]');
-    private menu_item = By.xpath('//li[@class="p-sub-nav-tier2"]//a[@href="/de/en/women/shoes/sneakers"]');
+    private menu_item = By.xpath('//li[@class="p-sub-nav-tier2"]//a[@href="/de/en/women/shoes/sneakers"]');ž
+
     //TEST 1
     private search_bar = By.className("p-header-search-inner js-already-under-validation-rules");
    // private search_item = By.className("p-header-search-field searchInput js-cmp-search-bar-input hf-validated hf-valid hf-in-range");
@@ -90,6 +90,7 @@ export class HomePage extends BasePage {
 
     async chooseMenuItem(){
         await this.driver.sleep(1000)
+        //await this.driver.manage().setTimeouts({ implicit: 10000 }); //ovdje ne radi
         //await this.waitForElement(this.women_menu, 40000);
         await this.findElementAndClick(this.menu_item);
     }
@@ -103,15 +104,17 @@ export class HomePage extends BasePage {
         await this.fillInputField(this.search_item, testData.data.search_item);
     }
 
+    async startSearch(){
+        //await this.waitForElement(this.start_search_icon, 10000);
+        await this.findElementAndClick(this.start_search_icon);
+    }
+
     //TEST 8
     async enterItem2ToSearchFor(){
         await this.fillInputField(this.search_item, testData.data.search_item2);
     }
 
-    async startSearch(){
-        //await this.waitForElement(this.start_search_icon, 10000);
-        await this.findElementAndClick(this.start_search_icon);
-    }
+
 
     //TEST 7
     async clickOnFavorites(){
