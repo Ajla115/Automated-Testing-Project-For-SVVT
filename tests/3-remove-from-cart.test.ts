@@ -32,6 +32,7 @@ test("add and remove items from cart", async () => {
     await viewcartPage.confirmRemoval();
     await viewcartPage.confirmSuccessfulRemoval(); 
     //ovdje mogu potvrditi da je cart empty jer nisam signed in, tako da ce uvijek biti samo ovaj jedan proizvod sto dodam
+
     
 },500000);
 

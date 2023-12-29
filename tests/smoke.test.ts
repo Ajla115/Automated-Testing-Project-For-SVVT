@@ -43,7 +43,7 @@ test("smoke test", async () => {
     await shoeitemPage.clickToChooseShoeSize();
     await shoeitemPage.clickToChooseQuantity();
     await shoeitemPage.clickOnAddToCart2();
-    //await shoeitemPage.closeAddedToCartPrompt(); //prolazi, ali ne klikne na X button, kako ?
+    //await shoeitemPage.closeAddedToCartPrompt(); 
     await shoeitemPage.clickToViewCart();
     await viewcartPage.clickOnCheckoutButton();
     await checkoutPage.enterFirstName();
