@@ -38,7 +38,7 @@ test("smoke test", async () => {
     await homePage.clickOnXButton();
     await homePage.hoverOverWomenMenu();
     await homePage.chooseMenuItem();
-    await sneakersPage.chooseOneItem();
+   await sneakersPage.chooseOneItem();
     await shoeitemPage.changeColorOfSneakers();
     await shoeitemPage.clickToChooseShoeSize();
     await shoeitemPage.clickToChooseQuantity();

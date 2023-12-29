@@ -117,12 +117,12 @@ export class ShoeItemPage extends BasePage {
     //Smoke test
     async changeColorOfSneakers(){
         await this.findElementAndClick(this.change_color_of_sneakers);
-        //await this.driver.sleep(1000);
-        await this.driver.manage().setTimeouts({ implicit: 10000 });
+        await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 10000 });
     }
 
     async clickToChooseShoeSize(){
-
+       // await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.scrollIntoView(this.sizes_window);
         await this.findElementAndClick(this.choose_shoe_size);
     }

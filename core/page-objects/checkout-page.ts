@@ -70,7 +70,8 @@ export class CheckoutPage extends BasePage {
     }
 
     async chooseCountry(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.scrollIntoView(this.open_country_prompt);
         await this.findElementAndClick(this.open_country_prompt);
         await this.findElementAndClick(this.choose_country);
@@ -83,18 +84,22 @@ export class CheckoutPage extends BasePage {
 
     async stayOnGermanOnlineStore(){
         await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.findElementAndClick(this.stay_on_german_online_store);
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
     }
 
     async chooseDHLOption(){
+        await this.driver.manage().setTimeouts({ implicit: 50000 });
         await this.waitForElement(this.choose_DHL, 10000);
         await this.findElementAndClick(this.choose_DHL);
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        //await this.driver.manage().setTimeouts({ implicit: 50000 });
     }
 
     async enterEmail(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 50000 });
         await this.waitForElement(this.enter_email, 20000);
         await this.fillInputField(this.enter_email, testData.data.login_email);
     }
@@ -104,13 +109,15 @@ export class CheckoutPage extends BasePage {
     }
 
     async chooseCreditCard(){
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.scrollIntoView(this.payment_box);
         //await this.driver.sleep(1000);
         await this.findElement(this.payment_box);
         //await this.findElementAndClick(this.payments_title);
         //await this.findElementAndClick(this.select_payment_method);
-        await this.driver.sleep(1000);
+        //await this.driver.sleep(1000);
+        await this.driver.manage().setTimeouts({ implicit: 10000 });
         await this.waitForElement(this.choose_credit_card, 20000);
         await this.findElementAndClick(this.choose_credit_card);
         //await this.driver.sleep(1000);
