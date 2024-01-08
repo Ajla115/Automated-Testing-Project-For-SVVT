@@ -72,14 +72,13 @@ export class LoginPage extends BasePage {
     async verifyAccountLogin(){
         await this.waitForElement(this.login_verification_message, 10000);
         
-        // Get all matching elements
+        
         const elements = await this.findElement(this.login_verification_message);
-        // Check if there are at least three elements
+       
         if (elements.length >= 2) {
-        // Get the text content of the second element
+        
         const secondElementText = await elements[1].getText();
-
-        // Compare the text with the expected value from testData    
+  
         await this.checkMatchingElements(secondElementText, testData.verification_message.login_message);
     }
 }

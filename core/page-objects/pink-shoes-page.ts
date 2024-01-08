@@ -9,7 +9,6 @@ const testData = JSON.parse(readFileSync(dataFilePath, "utf8"));
 
 export class PinkShoesPage extends BasePage {
 
-    //private search_confirmation_message = By.xpath("ul[@class='breadcrumb']//li[@class='breadcrumb-item']");
     private search_confirmation_message = By.className("breadcrumb-item");
 
     constructor(driver: WebDriver) {
@@ -18,14 +17,13 @@ export class PinkShoesPage extends BasePage {
 
     async verifySearchPage(){
         await this.waitForElement(this.search_confirmation_message, 20000);
-        // Get all matching elements
-        const elements = await this.findElement(this.search_confirmation_message);
-        // Check if there are at least three elements
-        if (elements.length >= 3) {
-        // Get the text content of the third element
-        const thirdElementText = await elements[2].getText();
 
-        // Compare the text with the expected value from testData    
+        const elements = await this.findElement(this.search_confirmation_message);
+
+        if (elements.length >= 3) {
+
+        const thirdElementText = await elements[2].getText();
+  
         await this.checkMatchingElements(thirdElementText, testData.verification_message.search_complete);
     }
 }

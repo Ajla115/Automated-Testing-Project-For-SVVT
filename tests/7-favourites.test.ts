@@ -29,7 +29,6 @@ izbrise iz favorites*/
 test("add to favorites", async () => {
     await homePage.acceptAllCookies();
     await homePage.clickOnXButton();
-    //await homePage.clickOnFavorites();
     await homePage.clickOnAShoeItem();
     await shoeitemPage.clickOnASize();
     await shoeitemPage.addToFavorites();

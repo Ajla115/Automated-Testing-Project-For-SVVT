@@ -38,7 +38,7 @@ test("smoke test", async () => {
     await homePage.clickOnXButton();
     await homePage.hoverOverWomenMenu();
     await homePage.chooseMenuItem();
-   await sneakersPage.chooseOneItem();
+    await sneakersPage.chooseOneItem();
     await shoeitemPage.changeColorOfSneakers();
     await shoeitemPage.clickToChooseShoeSize();
     await shoeitemPage.clickToChooseQuantity();
@@ -54,9 +54,9 @@ test("smoke test", async () => {
     await checkoutPage.enterCity();
     await checkoutPage.chooseCountry();
     await checkoutPage.stayOnGermanOnlineStore();
-    await checkoutPage.chooseDHLOption();
+    //await checkoutPage.chooseDHLOption();
     await checkoutPage.enterEmail();
-    await checkoutPage.goToPaymentSection(); //--> ovdje mi se pojavi google pop up
+    await checkoutPage.goToPaymentSection(); //--> here, google pop up appears
     await checkoutPage.chooseCreditCard(); 
     await checkoutPage.enterNameOfCreditCard();
     await checkoutPage.enterCardNumber();

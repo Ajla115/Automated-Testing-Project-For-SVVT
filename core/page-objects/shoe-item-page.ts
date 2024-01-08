@@ -10,8 +10,6 @@ export class ShoeItemPage extends BasePage {
 
     //TEST 2
     private shoes_size = By.xpath("//a[@href='https://eu.puma.com/de/en/pd/fenty-x-puma-creeper-phatty-unisex-sneakers/396403.html?dwvar_396403_size=0180&dwvar_396403_color=01']");
-
-    //private add_to_cart_button = By.xpath('//div[@class="add-to-cart-btn-block col-10 col-sm-8"]//button[@class="add-to-cart btn btn-primary btn-full-width"]');
     private add_to_cart_button = By.xpath('/html/body/div[6]/div[3]/div[3]/div[2]/div[2]/div/div[11]/div/div[2]/button');
     private added_to_cart_prompt = By.xpath("//div[@id='addToBagOverlay']//div[@class='modal-dialog']//div[@class='modal-content']//div[@class='modal-body']");
     private added_item_verification_message = By.xpath("//h2[@class='bag-overlay-quantity-added']");
@@ -25,9 +23,6 @@ export class ShoeItemPage extends BasePage {
     private add_to_favorites_button = By.xpath("//button[@class='btn btn-add-to-wish-list-pdp add-to-wish-list']");
     private open_added_to_favorites_prompt = By.xpath("//div[@class='wishlist-overlay']");
     private added_to_favorites = By.xpath("//h2[@class='wishlist-overlay-item-added ']");
-    //private added_to_favorites = By.xpath('/html/body/div[15]/div/div/div/div/h2');
-    //private added_to_favorites = By.xpath('/html/body/div[17]/div/div/div/div/h2/text()');
-    //private added_to_favorites = By.xpath('//*[@id="addToWishlistOverlay"]/div/div/div/div/h2');
 
     //Smoke test
     private change_color_of_sneakers = By.id("swatch-16");
@@ -35,7 +30,6 @@ export class ShoeItemPage extends BasePage {
     private sizes_window = By.xpath('//div[@id="attributes-container-size"]');
     private choose_quantity = By.xpath("//select[@id='qty-select-4065454926487']");
     private added_to_cart_confirmation_prompt = By.xpath('/html/body/div[17]/div/div/div');
-    //private close_added_to_cart_prompt = By.xpath('//div[@class="modal fade addToBagOverlay modal-fs-mobile show"]//div[@class="modal-dialog"]//div[@class="modal-content"]//button[@class="close"]');
     private close_added_to_cart_prompt = By.xpath('/html/body/div[17]/div/div/button');
    
     //TEST 10

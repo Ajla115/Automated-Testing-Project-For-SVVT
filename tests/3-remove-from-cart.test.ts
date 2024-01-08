@@ -31,12 +31,12 @@ test("add and remove items from cart", async () => {
     await viewcartPage.clickToDeleteItemFromCart();
     await viewcartPage.confirmRemoval();
     await viewcartPage.confirmSuccessfulRemoval(); 
-    //ovdje mogu potvrditi da je cart empty jer nisam signed in, tako da ce uvijek biti samo ovaj jedan proizvod sto dodam
-
+    //here, it is possible to confirm that cart is empty since there is no sign up,
+    //and therefore here will always be just one product
     
 },500000);
 
-afterAll(async () => {
+/*afterAll(async () => {
     await quitDriver(driver);
-},30000);
+},30000);*/
 

@@ -21,9 +21,7 @@ export class FavoritesPage extends BasePage {
     //TEST 8
     private bin_icon = By.className("remove-from-wishlist");
     private remove_item_prompt = By.id("removeProductLineItemModal");
-    private confirm_removal = By.className("btn btn-primary wish-delete-confirmation-btn");
-    //private close_remove_item_prompt = By.className('modal-header delete-confirmation-header');
-   // private close_icon = By.className("close");
+    private confirm_removal = By.className("btn btn-primary wish-delete-confirmation-btn");;
    private close_remove_item_prompt = By.xpath("//div[@class='modal-header delete-confirmation-header']//button[@class='close']");
    private empty_favorites_list = By.xpath("//h1[@class='wishlist-empty-message']");
 
@@ -54,13 +52,13 @@ export class FavoritesPage extends BasePage {
 
     async verifyFavoritesPage(){
         await this.waitForElement(this.verify_favorites_page, 20000);
-        // Get all matching elements
+       
         const elements = await this.findElement(this.verify_favorites_page);
-        // Check if there are at least three elements
+        
         if (elements.length >= 3) {
-        // Get the text content of the third element
+        
         const thirdElementText = await elements[2].getText();
-        // Compare the text with the expected value from testData    
+          
         await this.checkMatchingElements(thirdElementText, testData.verification_message.favorites);
         }
     }
@@ -80,7 +78,7 @@ export class FavoritesPage extends BasePage {
 
     async closeRemoveItemPrompt(){
        await this.driver.sleep(1000);
-        //await this.driver.manage().setTimeouts({ implicit: 10000 });
+        //await this.driver.manage().setTimeouts({ implicit: 10000 }); //did not work here
         await this.findElementAndClick(this.close_remove_item_prompt);
         //await this.findElementAndClick(this.close_icon);
     }

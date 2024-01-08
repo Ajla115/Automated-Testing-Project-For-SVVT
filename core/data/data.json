@@ -32,6 +32,7 @@
         "favorites": "Favourites",
         "return_policy" : "Returns",
         "added_to_cart" : "1 item(s) added to your cart!",
+        "confirm_successful_removal" : "CART IS EMPTY",
         "search_complete" : "Pink female running shoes",
         "successful_filtering" : "Price: 120 € - 200 €",
         "successful_size_filtering" : "Size: 38",
